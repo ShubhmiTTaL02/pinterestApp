@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const plm=require("passport-local-mongoose")
+
 
 mongoose.connect("mongodb://127.0.0.1:27017/pintrestClone");
 
@@ -11,7 +13,6 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
     },
     email: {
         type: String,
@@ -20,7 +21,7 @@ const UserSchema = new mongoose.Schema({
         trim: true,
         lowercase: true
     },
-    fullName: {
+    fullname: {
         type: String,
         required: true,
         trim: true
@@ -29,8 +30,13 @@ const UserSchema = new mongoose.Schema({
         type: String, // URL of profile picture
         default: "" 
     },
-    posts: []
+    posts: [{
+      type:  mongoose.Schema.Types.ObjectId,
+      ref:'Post'
+    }]
 }, { timestamps: true });
+
+UserSchema.plugin(plm)
 
 module.exports = mongoose.model("User", UserSchema);
 
