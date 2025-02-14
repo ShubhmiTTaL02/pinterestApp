@@ -17,16 +17,26 @@
           <p class="tagline">Lorem, ipsum..</p>
           <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum, voluptatem. .</p>
           <a href="/logout" class="button">Logout</a>
+          <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="text" name="filecaption" placeholder="caption ">
+            <input type="file" name="file">
+            <input type="submit">
+          </form>
         </div>
     </div>
     <div class="container">
-        <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="cards">
+        <% user.posts.forEach(function(post){
+          %> <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div><%
+        })%>
+      </div>
         </div>
-      </div></div>
   </body>
 </html>
